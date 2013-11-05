@@ -1,0 +1,35 @@
+<template name="startQuiz">
+<div class="pearson-bar-blue">
+<div class="container">
+<div class="pearson">Pearson</div>
+<div class="always-learning">Always Learning</div>
+</div>
+</div>
+<div class="container">
+<div class="row">
+<div class="col-md-12 container-main" id="content">
+	<h1 class="page-header">Quiz Me <small>{{quiz_name}}</small></h1>
+	<p class="lead">This is a timed quiz testing your vocabulary skills. Your final score will be displayed on the leaderboard.</p>
+	<form class="pstrap">
+		<h2>Enter your name to begin</h2>
+		 <div>
+		<label for="txt1">Name</label>
+		<input type="text" id="playername" name="playername">
+	    </div>
+		<button type="submit" class="btn btn-primary">Begin <i class="icon-circle-arrow-right"></i></button>
+	</form>
+	<ul class="breadcrumb">
+		<li><a href="#">Quiz Me</a><span class="divider"></span></li>
+		<li>{{quiz_name}}</li>
+	</ul>
+</div>
+</div>
+<footer>
+<hr class="gradient"/>
+<p class="sosumi">Copyright &copy; 2013 Pearson or its affiliate(s). All rights reserved.</p>
+</footer>
+</div>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/pearsonstrap.js"></script>
+</template>

@@ -1,46 +1,17 @@
 <head>
-  <title>Quiz Me!</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Quiz Me</title>
+<meta name="description" content="Quiz Me">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="apple-touch-icon" href="images/touch-icon/blue/apple-touch-icon-precomposed.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon/blue/apple-touch-icon-72x72-precomposed.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon/blue/apple-touch-icon-114x114-precomposed.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="images/touch-icon/blue/apple-touch-icon-144x144-precomposed.png" />
+<link rel="shortcut icon" href="images/favicon/favicon.ico">
+<meta name="msapplication-TileColor" content="#364395">
+<meta name="msapplication-TileImage" content="images/favicon/pearson-tile.png">
+<link rel="stylesheet" href="css/pearsonstrap.min.css">
 </head>
-
 <body>
-  {{yield}}
 </body>
-
-<template name="layout">
-  <div class="page-container">
-    <div>
-      <div>
-      {{yield}}
-      </div>
-    </div>
-  </div>
-</template>
-
-<template name="quizList">
-  <div class="table-responsive">
-  <table class="table table-striped ">
-  <thead>
-    <th><h2>Quizzes</h2></th>
-  </thead>
-    {{#each quizzes}}
-      {{> quizRow }}
-    {{/each}}
-  </table>
-  </div>
-</template>
-
-<template name="quizRow">
-  <tr>
-    <td><a href="{{pathFor 'quizShow'}}">{{name}}</a></td>
-  </tr>
-</template>
-
-<template name="quizShow">
- <form role="form">
-  <div class="form-group">
-    <label for="answer">{{vocab_word}}</label>
-    <input type="email" class="form-control" id="answer" placeholder="Enter your answer here">
-  </div>
-  <button type="submit" class="btn btn-default">Submit</button>
-</form>
-</template>
