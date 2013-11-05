@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if IE 9]>    <html class="no-js ie9" lang="en"> <![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>Quiz Me</title>
+        <meta name="description" content="Quiz Me">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" href="images/touch-icon/blue/apple-touch-icon-precomposed.png" />
+        <link rel="apple-touch-icon" sizes="72x72" href="images/touch-icon/blue/apple-touch-icon-72x72-precomposed.png" />
+        <link rel="apple-touch-icon" sizes="114x114" href="images/touch-icon/blue/apple-touch-icon-114x114-precomposed.png" />
+        <link rel="apple-touch-icon" sizes="144x144" href="images/touch-icon/blue/apple-touch-icon-144x144-precomposed.png" />
+		<link rel="shortcut icon" href="images/favicon/favicon.ico">
+		<meta name="msapplication-TileColor" content="#364395">
+		<meta name="msapplication-TileImage" content="images/favicon/pearson-tile.png">
+        <link rel="stylesheet" href="css/pearsonstrap.min.css">
+        <script src="js/modernizr.js"></script>
+        <style>
+			fieldset {
+				padding-bottom:105px;
+			}
+			fieldset a.btn {
+				margin-left:20%;
+			}
+		</style>
+    </head>
+    <body>
+    	<div class="pearson-bar-blue">
+	        <div class="container">
+	        	<div class="pearson">Pearson</div>
+	        	<div class="always-learning">Always Learning</div>
+	        </div>
+	    </div>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 container-main" id="content">
+					<h1 class="page-header">Quiz Me <small>Create a quiz</small></h1>
+					<p class="lead">Use this page to create a quiz and share it with your friends or classmates.</p>
+					<form action="2.html" method="post" class="pstrap">
+						<h2>Create your Quiz</h2>
+						<div>
+					    	<label for="txt1">Quiz title</label>
+					    	<input type="text" id="txt1" name="txt1">
+					    </div>
+                        <div>
+					    	<label for="txta">Sharing</label>
+					    	<textarea rows="2" id="txta" name="txta"></textarea>
+                            <p class="help-block">Please enter a comma seperated list of email addresses.</p>
+					    </div>
+                        <div>
+					    	<fieldset>
+					    		<legend>Add questions</legend>
+					    		<div>
+					    			<label for="fieldset1">Word to define</label>
+					    			<input type="text" id="fieldset1" name="fieldset1">
+					    		</div>
+                                <div id="questions"></div>
+                                <div>
+                                	<a class="btn btn-success" id="questions-button" href="#"><i class=" icon-plus-sign"></i> Question</a>
+                                </div>
+							</fieldset>
+					    </div>
+						<button type="submit" class="btn btn-primary">Save Quiz</button>
+					</form>
+					<ul class="breadcrumb">
+						<li><a href="#">Quiz Me</a><span class="divider"></span></li>
+                        <li>Create a quiz</li>
+					</ul>
+				</div>
+			</div>
+			<footer>
+				<hr class="gradient"/>
+				<p class="sosumi">Copyright &copy; 2013 Pearson or its affiliate(s). All rights reserved.</p>
+			</footer>
+		</div>
+		<script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/pearsonstrap.js"></script>
+        <script>
+			var i = 2;
+			$("#questions-button").on( "click", function( event ) {
+				event.preventDefault();
+				$('<div id="word' + i + '"><label for="inputgrp' + i + '">Word to define</label><div class="input-group"><input type="text" id="inputgrp' + i + '" name="inputgrp' + i + '"><span class="input-group-btn"><button class="btn btn-danger" type="button" id="remove-button" onclick="removeWord(\'word' + i + '\')"><i class=" icon-minus-sign"></i></button></span></div></div>').appendTo("#questions");
+				i++;
+				return false;
+			});
+			function removeWord(word) { 
+				$("#" + word + "").remove();
+				i--;
+				return false;
+			}
+		</script>
+    </body>
+</html>
