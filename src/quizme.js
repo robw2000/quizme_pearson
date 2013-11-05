@@ -36,8 +36,12 @@ Router.map(function () {
     },
     data: function() {
       var quiz = Session.get('quiz');
-      if (Session.get('word')) {
+      if (quiz == null) {
+        quiz = Quizzes.findOne({ _id: this.params._id });
+      }
+      if (Session.get('word') == null) {
         var i = Math.floor(Math.random() * quiz.vocab.length);
+        
         Session.set('word', quiz.vocab[i]);
       }
       var vocab_word = Session.get('word');
