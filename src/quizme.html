@@ -1,13 +1,46 @@
 <head>
-  <title>quizme</title>
+  <title>Quiz Me!</title>
 </head>
 
 <body>
-  {{> hello}}
+  {{yield}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="layout">
+  <div class="page-container">
+    <div>
+      <div>
+      {{yield}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="quizList">
+  <div class="table-responsive">
+  <table class="table table-striped ">
+  <thead>
+    <th><h2>Quizzes</h2></th>
+  </thead>
+    {{#each quizzes}}
+      {{> quizRow }}
+    {{/each}}
+  </table>
+  </div>
+</template>
+
+<template name="quizRow">
+  <tr>
+    <td><a href="{{pathFor 'quizShow'}}">{{name}}</a></td>
+  </tr>
+</template>
+
+<template name="quizShow">
+ <form role="form">
+  <div class="form-group">
+    <label for="answer">{{vocab_word}}</label>
+    <input type="email" class="form-control" id="answer" placeholder="Enter your answer here">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
 </template>
