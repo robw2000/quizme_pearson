@@ -11,6 +11,7 @@
 <h1 class="page-header">Quiz Me <small>{{quiz_name}}</small></h1>
 <form action="3.html" method="post" class="pstrap">
 	<h2>Define "{{word}}"</h2>
+	{{#if isUnanswered}}
 	<div class="radio">
 		<input type="radio" name="radiogrp" id="radio1" value="option1"><label for="radio1">{{answer1}}</label>
 	</div>
@@ -24,6 +25,9 @@
 		<input type="radio" name="radiogrp" id="radio4" value="option4"><label for="radio4">{{answer4}}</label>
 	</div>
 	<button type="submit" class="btn btn-primary">Next <i class="icon-circle-arrow-right"></i></button>
+	{{else}}
+	
+	{{/if}}
 </form>
 <ul class="breadcrumb">
 	<li><a href="#">Quiz Me</a><span class="divider"></span></li>
