@@ -1,4 +1,5 @@
 var getDefinition = function (word) {
+    console.log('getDefinition(' + word + ')');
     var response =
         Meteor.http.call('GET', 'http://api.wordnik.com/v4/word.json/' + word + '/definitions?limit=3&includeRelated=true&sourceDictionaries=webster&useCanonical=false&includeTags=false&api_key=02d6121eae6326d65940a0b410d0ef121d89f66f01e3a699f');
 
@@ -18,6 +19,7 @@ var getDefinition = function (word) {
  * @returns returns  synonyms array of string
  */
 var getSynonyms = function (word) {
+    console.log('getSynonyms(' + word + ')');
     var response =
         Meteor.http.call('GET', 'http://api.wordnik.com/v4/word.json/' + word + '/relatedWords?useCanonical=true&relationshipTypes=synonym&limitPerRelationshipType=10&api_key=02d6121eae6326d65940a0b410d0ef121d89f66f01e3a699f');
      if (response && response.data && response.data.length && response.data.length > 0 && response.data[0].words) {
@@ -34,6 +36,7 @@ var getSynonyms = function (word) {
  * @returns  javascript json object
  */
 var getWordAndDefinition = function (quizWord) {
+    console.log('getWordAndDefinition(' + quizWord + ')');
     var defs = {
         'word': quizWord,
         'answer': getDefinition(quizWord),
@@ -60,15 +63,19 @@ var getWordAndDefinition = function (quizWord) {
 
     Meteor.methods({
         createQuiz: function (name , words) {
+            console.log('createQuiz(' + name + ', [' + words + '])');
             var vocab = [];
             for(x=0; x < words.length; x++){
-                var def = getWordAndDefinition(words[x]);
-                vocab.push(def);
+                if (words[x] != null && words[x] != '') {
+                    var def = getWordAndDefinition(words[x]);
+                    vocab.push(def);
+                }
             }
 
            Quizzes.insert({
-                'name':name ,
-                'vocab' : vocab
+                name:name ,
+                vocab: vocab,
+                createdAt: moment().format()
             });
         },
 

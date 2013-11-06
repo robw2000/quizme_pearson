@@ -13,7 +13,7 @@ Router.map(function () {
     path: '/quizzes',
     data: {
       quizzes: function() {
-        return Quizzes.find({}, {sort: {name: -1}});
+        return Quizzes.find({}, {sort: {createdAt: -1, name: -1}});
       }
     }
   });
@@ -168,6 +168,7 @@ if (Meteor.isServer) {
       Quizzes.remove({});
       Quizzes.insert({
         name: 'Quizicals\' Vocabulary Quiz', 
+        createdAt: moment().format(),
         games: [
           {
             player_name: 'Rob',
@@ -224,6 +225,7 @@ if (Meteor.isServer) {
 
       Quizzes.insert({
         name: 'Rob W\'s Geology Quiz', 
+        createdAt: moment().format(),
         games: [
           {
             player_name: 'Rob',
