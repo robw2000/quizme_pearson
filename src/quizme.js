@@ -13,7 +13,7 @@ Router.map(function () {
     path: '/quizzes',
     data: {
       quizzes: function() {
-        return Quizzes.find({});
+        return Quizzes.find({}, {sort: {name: -1}});
       }
     }
   });
@@ -34,6 +34,8 @@ Router.map(function () {
       } else {
         Session.set('quiz', quiz);
       }
+      
+      Session.set('countCorrect' , 0);
     },
     data: function() {
       var quiz = Session.get('quiz');
@@ -57,6 +59,7 @@ Router.map(function () {
     data: function() {
       var quiz = Session.get('quiz');
       if (Session.get('word') == null) {
+        quiz.vocab = _.shuffle(quiz.vocab);
         for (var i = 0; i < quiz.vocab.length; i++) {
           quiz.vocab[i].index = i;
         }
