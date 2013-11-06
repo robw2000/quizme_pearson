@@ -9,7 +9,9 @@
 <div class="row">
 <div class="col-md-12 container-main" id="content">
 <h1 class="page-header">Quiz Me <small>{{quiz_name}}</small></h1>
-<form class="pstrap">
+    <div id="progressBar"></div>
+
+    <form class="pstrap">
 	<h2>Define "{{word}}"</h2>
 	<div class="radio">
 		<input type="radio" name="radiogrp" id="radio1" value="{{answer1}}"><label for="radio1">{{answer1}}</label>
@@ -40,4 +42,5 @@
 <script src="/js/jquery.js"></script>
 <script src="/js/bootstrap.js"></script>
 <script src="/js/pearsonstrap.js"></script>
+<script src="/js/jquery-ui.js"></script>
 </template>

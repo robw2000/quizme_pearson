@@ -66,5 +66,22 @@ var getWordAndDefinition = function (quizWord) {
                 'name':name ,
                 'vocab' : vocab
             });
+        },
+
+        updateQuiz: function (id ,games) {
+           Quizzes.update(
+                { '_id': id } ,
+                { $push: games}
+            );
+
+
+//            Quizzes.update(
+//                { '_id': id } ,
+//                { $push: { games : { player_name: Session.get('player_name') ,
+//                    start_time : Session.get('start_time') ,
+//                    end_time : Session.get('end_time') }} }
+//            );
         }
+
+
     });

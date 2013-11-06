@@ -8,6 +8,8 @@ Template.startQuiz.events({
     var player_name = t.find('#playername').value;
     if (player_name && player_name != '') {
       Session.set('player_name', player_name);
+      Session.set('start_time', moment().format());
+
     }
     Session.set('word', null);
     var quiz = Session.get('quiz');
