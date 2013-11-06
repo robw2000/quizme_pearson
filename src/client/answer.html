@@ -1,9 +1,9 @@
 <template name="answer">
 <div class="pearson-bar-blue">
-<div class="container">
-<div class="pearson">Pearson</div>
-<div class="always-learning">Always Learning</div>
-</div>
+	<div class="container">
+		<div class="pearson">Pearson</div>
+		<div class="always-learning">Always Learning</div>
+	</div>
 </div>
 <div class="container">
 <div class="row">
@@ -12,12 +12,16 @@
 <form class="pstrap">
 	<h2>Define "{{word}}"</h2>
 		{{#if isCorrect}}
-			<h2>Correct</h2>
+			<div class="alert alert-success">
+				<h4><i class="icon-ok"></i> Correct!</h4>
+				<p><strong>The correct answer was:</strong> {{answer}}</p>
+			</div>
 		{{else}}
-			<h2>Incorrect</h2>
+			<div class="alert alert-danger">
+				<h4><i class="icon-warning-sign"></i> Bacon Warning</h4>
+				<p><strong>The correct answer was:</strong> {{answer}}</p>
+			</div>
 		{{/if}}
-	<h3>The correct answer was:</h3>
-	<h3>{{answer}}</h3>
 	<button type="submit" class="btn btn-primary">Next <i class="icon-circle-arrow-right"></i></button>
 </form>
 <ul class="breadcrumb">
@@ -32,7 +36,7 @@
 <p class="sosumi">Copyright &copy; 2013 Pearson or its affiliate(s). All rights reserved.</p>
 </footer>
 </div>
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/pearsonstrap.js"></script>
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/pearsonstrap.js"></script>
 </template>

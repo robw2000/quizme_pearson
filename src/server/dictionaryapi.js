@@ -50,35 +50,21 @@ var getWordAndDefinition = function (quizWord) {
 }
 
 
-
-
+/**
+ * Methods exposed for the client
+ */
 
     Meteor.methods({
         createQuiz: function (name , words) {
-
-
-             var vocab = [];
+            var vocab = [];
             for(x=0; x < words.length; x++){
                 var def = getWordAndDefinition(words[x]);
                 vocab.push(def);
-
-//                console.log('word: ' + def.word);
-//                console.log(def.answer);
-//                console.log();
-//                console.log('wrong answer');
-//
-//
-//                for(y=0; y < def.wrong_answers.length; y++){
-//                    console.log(def.wrong_answers[y]);
-//                }
-//                console.log();
             }
 
-
-            Quizzes.insert({
+           Quizzes.insert({
                 'name':name ,
                 'vocab' : vocab
             });
-
         }
     });
