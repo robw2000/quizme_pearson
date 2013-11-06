@@ -41,8 +41,9 @@ Template.answer.events({
             'score' : score ,
             'timeTaken' : timeSec }}  ;
 
-      Meteor.call('updateQuiz' , quiz._id , games ) ;
-        Router.go('leaderboard', {_id: quiz._id} );
+        Meteor.call('updateQuiz' , quiz._id , games, function() {
+            Router.go('leaderboard', {_id: quiz._id} );
+        });
     } else {
       Router.go('question', {_id: quiz._id} );
     }
