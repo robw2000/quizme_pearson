@@ -27,7 +27,6 @@ Template.answer.events({
 
         var countCorrect = Session.get('countCorrect');
 
-        console.log(total ,countCorrect ) ;
         var timeSec = "";
         if (Session.get('end_time') && Session.get('start_time')){
             timeSec =  moment(Session.get('end_time')).valueOf() - moment(Session.get('start_time')).valueOf() ;
