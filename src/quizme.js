@@ -38,6 +38,7 @@ Router.map(function () {
     data: function() {
       var quiz = Session.get('quiz');
       return {
+        _id: quiz._id,
         quiz_name: quiz.name
       }
     }
@@ -72,6 +73,7 @@ Router.map(function () {
       answers[(inx + 2) % 4] = vocab_word.wrong_answers[(i + 1) % wrong_count];
       answers[(inx + 3) % 4] = vocab_word.wrong_answers[(i + 2) % wrong_count] ;     
       return {
+        _id: quiz._id,
         quiz_name: quiz.name,
         word: vocab_word.word,
         answer1: answers[0],
@@ -98,6 +100,7 @@ Router.map(function () {
       var answer = vocab_word.answer;
       
       return {
+        _id: quiz._id,
         quiz_name: quiz.name,
         word: word,
         answer: answer
@@ -142,6 +145,7 @@ Router.map(function () {
       }
       console.log('recent: ' + recent);
       return {
+        _id: quiz._id,
         quiz_name: quiz.name,
         games: games,
         recent: recent
