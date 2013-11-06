@@ -18,6 +18,10 @@ Router.map(function () {
     }
   });
   
+  this.route('createQuiz', {
+    path: '/create'
+  });
+  
   this.route('startQuiz', {
     path: '/quizzes/:_id/start',
     before: function() {
