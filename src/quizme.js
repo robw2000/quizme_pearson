@@ -5,7 +5,7 @@ Router.configure({
 });
 
 Router.map(function () {
-  this.route('home', {
+    this.route('home', {
     path: '/'
   });
   
@@ -28,37 +28,48 @@ Router.map(function () {
       Session.set('player_name', null);
       
       var quiz = Quizzes.findOne({ _id: this.params._id });
-      Session.set('quiz', quiz);
-    }
-  });
-  
-  this.route('takeQuiz', {
-    path: '/quizzes/:_id/take',
-    before: function() {
-      if (Session.equals('player_name', null)) Router.go('/quizzes/' + this.params._id + '/start');
-      if (Session.equals('quiz', null)) Router.go('/quizzes/' + this.params._id + '/start');
+      if (quiz == null) {
+        Session.set('quiz', null);
+        Session.set('word', null);
+        Session.set('isCorrect', false);
+        Router.go('quizzes');
+      } else {
+        Session.set('quiz', quiz);
+      }
     },
     data: function() {
       var quiz = Session.get('quiz');
-      if (quiz == null) {
-        quiz = Quizzes.findOne({ _id: this.params._id });
+      return {
+        quiz_name: quiz.name
       }
+    }
+  });
+  
+  this.route('question', {
+    path: '/quizzes/:_id/question',
+    before: function() {
+      if (Session.equals('player_name', null)) Router.go('/quizzes/' + this.params._id + '/start');
+      if (Session.equals('quiz', null)) Router.go('/quizzes/' + this.params._id + '/start');
+      
+    },
+    data: function() {
+      var quiz = Session.get('quiz');
       if (Session.get('word') == null) {
         var i = Math.floor(Math.random() * quiz.vocab.length);
         
         Session.set('word', quiz.vocab[i]);
       }
       var vocab_word = Session.get('word');
-      console.log(JSON.stringify(vocab_word));
       var wrong_count = vocab_word.wrong_answers.length;
       var answers = ['', '', '', ''];
       var i = Math.floor(Math.random() * wrong_count);
       var inx = Math.floor(Math.random() * 4);
       answers[inx] = vocab_word.answer;
       answers[(inx + 1) % 4] = vocab_word.wrong_answers[i % wrong_count];
-      answers[(inx + 2) % 4] = vocab_word.wrong_answers[(2 * i) % wrong_count];
-      answers[(inx + 3) % 4] = vocab_word.wrong_answers[(3 * i) % wrong_count] ;     
+      answers[(inx + 2) % 4] = vocab_word.wrong_answers[(i + 1) % wrong_count];
+      answers[(inx + 3) % 4] = vocab_word.wrong_answers[(i + 2) % wrong_count] ;     
       return {
+        quiz_name: quiz.name,
         word: vocab_word.word,
         answer1: answers[0],
         answer2: answers[1],
@@ -66,6 +77,29 @@ Router.map(function () {
         answer4: answers[3]
       }
 
+    }
+  });
+
+  this.route('answer', {
+    path: '/quizzes/:_id/answer',
+    before: function() {
+      if (Session.get('player_name') == null) Router.go('/quizzes/' + this.params._id + '/start');
+      if (Session.get('quiz') == null) Router.go('/quizzes/' + this.params._id + '/start');
+      if (Session.get('word') == null) Router.go('question', {_id: this.params._id});
+    },
+    data: function() {
+      var quiz = Session.get('quiz');
+      
+      var vocab_word = Session.get('word');
+      var word = vocab_word.word;
+      var answer = vocab_word.answer;
+      Session.set('word', null);
+      
+      return {
+        quiz_name: quiz.name,
+        word: word,
+        answer: answer
+      }
     }
   });
   
@@ -85,7 +119,7 @@ if (Meteor.isClient) {
 if (Meteor.isServer) {
   Meteor.startup(function () {
     var count = Quizzes.find().count();
-    if (count < 2) {
+    if (count < 1) {
       Quizzes.remove({});
       Quizzes.insert({
         name: 'Quizicals\' Vocabulary Quiz', 
