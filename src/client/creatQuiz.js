@@ -51,6 +51,17 @@ Template.createQuiz.events({
         var name = $('#txt1').val();
         Meteor.call('createQuiz' ,name , words) ;
 
+        $('#questions > :not(div:first-child)').remove();
+        $('#questions > div:first-child input,#txt1,#txta').val('');
+
+        $('form').before($('<div/>',{'class':'alert alert-success', 'id':'submitSuccess'}).text('Quiz Created Successfully ! You may create another if you like.'));
+
+        $('input').on('focus',function(){
+            $('#submitSuccess').remove();
+            $('input').off();
+        });
+
+        window.scrollTo(0, 0);
 
     }// end submit
 });
