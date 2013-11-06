@@ -67,7 +67,7 @@
 </template>
 
 <template name="leaderboard_allgames">
-<tr class="success">
+<tr class="{{isSuccessClass isAllWinner}}">
 <td><i class="{{isAllWinnerClass isAllWinner}}"></i> {{player_name}}</td>
 <td>{{score}}</td>
 <td>{{display_time time}}</td>
@@ -75,7 +75,7 @@
 </template>
 
 <template name="leaderboard_recentgames">
-<tr class="success">
+<tr class="{{isSuccessClass isRecentWinner}}">
 <td><i class="{{isRecentWinnerClass isRecentWinner}}"></i> {{player_name}}</td>
 <td>{{score}}</td>
 <td>{{display_time time}}</td>
