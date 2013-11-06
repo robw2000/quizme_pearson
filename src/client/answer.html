@@ -1,7 +1,7 @@
 <template name="answer">
 <div class="pearson-bar-blue">
 	<div class="container">
-		<div class="pearson">Pearson</div>
+		<a class="pearson-brand" href="/">Pearson</a>
 		<div class="always-learning">Always Learning</div>
 	</div>
 </div>
@@ -18,7 +18,7 @@
 			</div>
 		{{else}}
 			<div class="alert alert-danger">
-				<h4><i class="icon-warning-sign"></i> Bacon Warning</h4>
+				<h4><i class="icon-warning-sign"></i> Incorrect</h4>
 				<p><strong>The correct answer was:</strong> {{answer}}</p>
 			</div>
 		{{/if}}

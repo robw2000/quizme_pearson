@@ -110,7 +110,43 @@ Router.map(function () {
   });
   
   this.route('leaderboard', {
-    path: '/quizzes/:_id/leaderboard'
+    path: '/quizzes/:_id/leaderboard',
+    data: function() {
+      var quiz = Quizzes.findOne({_id: this.params._id}) || {games: []};
+      var games = quiz.games || [];
+      var recent = [];
+      games.sort(function(a, b){
+        if (a.score === b.score) {
+          var atime = moment(a.end_time).subtract(moment(a.start_time)).seconds();
+          var btime = moment(b.end_time).subtract(moment(b.start_time)).seconds();
+          
+          return atime - btime;
+        }
+        return b.score - a.score;
+      });
+      
+      for (var i = 0; i < games.length; i++) {
+        games[i].isAllWinner = (i === 0);
+        var st = moment(games[i].start_time);
+        var et = moment(games[i].end_time);
+        var earliestRecentTime = moment().subtract('minutes', 5);
+        games[i].time = et.subtract(st).seconds();
+        console.log('end time: ' + et.format());
+        console.log('earliestRecentTime: ' + earliestRecentTime.format());
+        console.log('isAfter: ' + et.isAfter(earliestRecentTime));
+        if (moment(games[i].end_time).isAfter(earliestRecentTime.format())) {
+          console.log('adding game: ' + games[i]);
+          games[i].isRecentWinner = (recent.length === 0);
+          recent.push(games[i]);
+        }
+      }
+      console.log('recent: ' + recent);
+      return {
+        quiz_name: quiz.name,
+        games: games,
+        recent: recent
+      };
+    }
   });
 });
 
@@ -125,6 +161,38 @@ if (Meteor.isServer) {
       Quizzes.remove({});
       Quizzes.insert({
         name: 'Quizicals\' Vocabulary Quiz', 
+        games: [
+          {
+            player_name: 'Rob',
+            start_time: moment().subtract('minutes', 11).format(),
+            end_time: moment().subtract('seconds', 205).format(),
+            score: 70
+          },
+          {
+            player_name: 'Brian',
+            start_time: moment().subtract('minutes', 1).format(),
+            end_time: moment().subtract('seconds', 5).format(),
+            score: 100
+          },
+          {
+            player_name: 'Sam',
+            start_time: moment().subtract('minutes', 4).format(),
+            end_time: moment().subtract('seconds', 45).format(),
+            score: 80
+          },
+          {
+            player_name: 'Rob',
+            start_time: moment().subtract('minutes', 21).format(),
+            end_time: moment().subtract('seconds', 350).format(),
+            score: 10
+          },
+          {
+            player_name: 'Shailesh',
+            start_time: moment().subtract('minutes', 1).format(),
+            end_time: moment().subtract('seconds', 25).format(),
+            score: 98
+          }
+        ],
         vocab: [
           {
             word: 'Apple',
@@ -149,6 +217,38 @@ if (Meteor.isServer) {
 
       Quizzes.insert({
         name: 'Rob W\'s Geology Quiz', 
+        games: [
+          {
+            player_name: 'Rob',
+            start_time: moment().subtract('minutes', 11).format(),
+            end_time: moment().subtract('seconds', 205).format(),
+            score: 70
+          },
+          {
+            player_name: 'Brian',
+            start_time: moment().subtract('minutes', 1).format(),
+            end_time: moment().subtract('seconds', 5).format(),
+            score: 100
+          },
+          {
+            player_name: 'Sam',
+            start_time: moment().subtract('minutes', 4).format(),
+            end_time: moment().subtract('seconds', 45).format(),
+            score: 80
+          },
+          {
+            player_name: 'Rob',
+            start_time: moment().subtract('minutes', 21).format(),
+            end_time: moment().subtract('seconds', 350).format(),
+            score: 10
+          },
+          {
+            player_name: 'Shailesh',
+            start_time: moment().subtract('minutes', 1).format(),
+            end_time: moment().subtract('seconds', 25).format(),
+            score: 98
+          }
+        ],
         vocab: [
           {
             word: 'sedimentary',
