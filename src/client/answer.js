@@ -15,7 +15,6 @@ Template.answer.events({
       var i = word.index;
       if (i >= quiz.vocab.length - 1) {
         isGameOver = true;
-        Session.set('word', null);
       } else {
         Session.set('word', quiz.vocab[i+1]);
       }
