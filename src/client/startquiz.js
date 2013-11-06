@@ -9,6 +9,7 @@ Template.startQuiz.events({
     if (player_name && player_name != '') {
       Session.set('player_name', player_name);
     }
+    Session.set('word', null);
     var quiz = Session.get('quiz');
     Router.go('question', {_id: quiz._id} );
   }

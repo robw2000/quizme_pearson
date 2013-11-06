@@ -29,10 +29,8 @@ Router.map(function () {
       
       var quiz = Quizzes.findOne({ _id: this.params._id });
       if (quiz == null) {
-        Session.set('quiz', null);
-        Session.set('word', null);
         Session.set('isCorrect', false);
-        Router.go('quizzes');
+        Router.go('listQuizzes');
       } else {
         Session.set('quiz', quiz);
       }
@@ -48,9 +46,12 @@ Router.map(function () {
   this.route('question', {
     path: '/quizzes/:_id/question',
     before: function() {
-      if (Session.equals('player_name', null)) Router.go('/quizzes/' + this.params._id + '/start');
-      if (Session.equals('quiz', null)) Router.go('/quizzes/' + this.params._id + '/start');
+      if (Session.get('player_name') == null) Router.go('startQuiz', {_id: this.params._id});
       
+      if (Session.get('quiz') == null) {
+        var quiz = Quizzes.findOne({ _id: this.params._id });
+        Session.set('quiz', quiz);
+      }
     },
     data: function() {
       var quiz = Session.get('quiz');
@@ -93,7 +94,6 @@ Router.map(function () {
       var vocab_word = Session.get('word');
       var word = vocab_word.word;
       var answer = vocab_word.answer;
-      Session.set('word', null);
       
       return {
         quiz_name: quiz.name,
@@ -172,8 +172,4 @@ if (Meteor.isServer) {
       });
     }
   });
-
-
-
-
 }
