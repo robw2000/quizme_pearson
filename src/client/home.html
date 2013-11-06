@@ -5,9 +5,9 @@
 	        	<div class="always-learning">Always Learning</div>
 	        </div>
 	    </div>
-	    <style>
+        <style>
 			.jumbotron {
-				background:#396499 url(/images/jumbotron.png) 0 0 repeat-x;
+				background:#396499 url(images/jumbotron.png) 0 0 repeat-x;
 				color: #fff;
 				text-shadow: 0 0 7px #396499;
 			}
@@ -16,22 +16,23 @@
 			<div class="container">
 				<h1>Quiz Me</h1>
 				<p>A new application to create quizzes and share them with friends or classmates.</p>
+                <p><a href="{{pathFor 'createQuiz'}}" class="btn btn-primary btn-lg">Create Quiz <i class="icon-circle-arrow-right"></i></a> <a href="{{pathFor 'createQuiz'}}" class="btn btn-success btn-lg">Take Quiz <i class="icon-circle-arrow-right"></i></a></p>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-12 col-sm-4 col-lg-4">
+				<div class="col-sm-6 col-lg-6">
 					<h2>Built With</h2>
-                    <p>Quiz Me was built with the following technologies:</p>
+                    <p class="lead">Quiz Me was built with the following technologies:</p>
 					<ul class="check">
                     	<li>Meteor</li>
                         <li>Node.js</li>
                         <li>Bootstrap 3</li>
                     </ul>
 			  	</div>
-                <div class="col-12 col-sm-4 col-lg-4 ">
+                <div class="col-sm-6 col-lg-6 ">
 			    	<h2>Features</h2>
-			    	<p>Quiz Me features:</p>
+			    	<p class="lead">Quiz Me includes the following features:</p>
 			    	<ul class="check">
                     	<li>Pearson Dictionary API integration</li>
                     	<li>Quiz creation</li>
@@ -39,14 +40,13 @@
                         <li>Quiz sharing</li>
                     </ul>
 			  	</div>
-			  	<div class="col-12 col-sm-4 col-lg-4">
-			    	<h2>Quiz Me Menu</h2>
-			    	<p>Use one of the links below to get started with Quix Me:</p>
-					<p><a class="btn btn-default" href="{{pathFor 'createQuiz'}}">Create Quiz <i class="icon-chevron-sign-right"></i></a> <a class="btn btn-default" href="{{pathFor 'listQuizzes'}}">Take Quiz <i class="icon-chevron-sign-right"></i></a></p>
-			 	</div>
 			</div>
+			<footer>
+				<hr class="gradient"/>
+				<p class="sosumi">Copyright &copy; 2013 Pearson or its affiliate(s). All rights reserved.</p>
+			</footer>
 		</div>
 		<script src="/js/jquery.js"></script>
-		<script src="/js/bootstrap.js"></script>
-		<script src="/js/pearsonstrap.js"></script>
+        <script src="/js/bootstrap.js"></script>
+        <script src="/js/pearsonstrap.js"></script>
 		</template>
