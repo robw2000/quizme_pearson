@@ -56,9 +56,11 @@ Router.map(function () {
     data: function() {
       var quiz = Session.get('quiz');
       if (Session.get('word') == null) {
-        var i = Math.floor(Math.random() * quiz.vocab.length);
-        
-        Session.set('word', quiz.vocab[i]);
+        for (var i = 0; i < quiz.vocab.length; i++) {
+          quiz.vocab[i].index = i;
+        }
+        Session.set('quiz', quiz);
+        Session.set('word', quiz.vocab[0]);
       }
       var vocab_word = Session.get('word');
       var wrong_count = vocab_word.wrong_answers.length;

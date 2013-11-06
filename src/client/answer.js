@@ -7,11 +7,27 @@ Template.answer.helpers({
 Template.answer.events({
   'submit' : function(e, t){
     e.preventDefault();
-    
-    Session.set('word', null);
-    
+
     var quiz = Session.get('quiz');
-    Router.go('question', {_id: quiz._id} );
+    var word = Session.get('word');
+    var isGameOver = false;
+    if (word != null) {
+      var i = word.index;
+      console.log('finished index ' + i);
+      if (i >= quiz.vocab.length - 1) {
+        isGameOver = true;
+        Session.set('word', null);
+      } else {
+        Session.set('word', quiz.vocab[i+1]);
+      }
+    }
+    
+    if (isGameOver) {
+      Session.set('end_time', moment());
+      Router.go('leaderboard', {_id: quiz._id} );
+    } else {
+      Router.go('question', {_id: quiz._id} );
+    }
   }
 });
 
