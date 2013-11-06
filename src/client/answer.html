@@ -1,4 +1,4 @@
-<template name="takeQuiz">
+<template name="answer">
 <div class="pearson-bar-blue">
 <div class="container">
 <div class="pearson">Pearson</div>
@@ -9,9 +9,8 @@
 <div class="row">
 <div class="col-md-12 container-main" id="content">
 <h1 class="page-header">Quiz Me <small>{{quiz_name}}</small></h1>
-<form action="3.html" method="post" class="pstrap">
+<form class="pstrap">
 	<h2>Define "{{word}}"</h2>
-	{{#if isAnswered}}
 		{{#if isCorrect}}
 			<h2>Correct</h2>
 		{{else}}
@@ -20,21 +19,6 @@
 	<h3>The correct answer was:</h3>
 	<h3>{{answer}}</h3>
 	<button type="submit" class="btn btn-primary">Next <i class="icon-circle-arrow-right"></i></button>
-	{{else}}
-	<div class="radio">
-		<input type="radio" name="radiogrp" id="radio1" value="option1"><label for="radio1">{{answer1}}</label>
-	</div>
-	<div class="radio">
-		<input type="radio" name="radiogrp" id="radio2" value="option2"><label for="radio2">{{answer2}}</label>
-	</div>
-	<div class="radio">
-		<input type="radio" name="radiogrp" id="radio3" value="option3"><label for="radio3">{{answer3}}</label>
-	</div>
-	<div class="radio">
-		<input type="radio" name="radiogrp" id="radio4" value="option4"><label for="radio4">{{answer4}}</label>
-	</div>
-	<button type="submit" class="btn btn-primary">Next <i class="icon-circle-arrow-right"></i></button>
-	{{/if}}
 </form>
 <ul class="breadcrumb">
 	<li><a href="#">Quiz Me</a><span class="divider"></span></li>
