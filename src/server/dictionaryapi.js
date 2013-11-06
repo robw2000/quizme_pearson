@@ -32,17 +32,18 @@ var getSynonyms = function (word) {
 var getWordAndDefinition = function (quizWord) {
     var defs = {
         'word': quizWord,
-        'definition': getDefinition(quizWord),
-        'falseDefs': []
+        'answer': getDefinition(quizWord),
+        'wrong_answers': []
     };
 
     var synonyms = getSynonyms(quizWord);
     for (i = 0; i < synonyms.length; i++) {
         var def = getDefinition(synonyms[i]);
         if (def != null) {
-            defs.falseDefs.push(def);
+            defs.wrong_answers.push(def);
         }
     }
 
     return defs;
 }
+
