@@ -24,17 +24,23 @@ Template.answer.events({
     if (isGameOver) {
         Session.set('end_time', moment().format());
         var total = quiz.vocab.length;
-        console.log(total)  ;
 
         var countCorrect = Session.get('countCorrect');
-        console.log(countCorrect)  ;
 
-        var score = Math.round(countCorrect/total*100);
-        console.log(score)  ;
+        console.log(total ,countCorrect ) ;
+        var timeSec = "";
+        if (Session.get('end_time') && Session.get('start_time')){
+            timeSec =  moment(Session.get('end_time')).valueOf() - moment(Session.get('start_time')).valueOf() ;
+        }
+        var score = 0;
+        if (total && countCorrect ) {
+            score = Math.round(countCorrect/total*100);
+        }
         var games =  { 'games' : { 'player_name' : Session.get('player_name') ,
             'start_time' : Session.get('start_time') ,
             'end_time' : Session.get('end_time'),
-            'score' : score }}  ;
+            'score' : score ,
+            'timeTaken' : timeSec }}  ;
 
       Meteor.call('updateQuiz' , quiz._id , games ) ;
         Router.go('leaderboard', {_id: quiz._id} );

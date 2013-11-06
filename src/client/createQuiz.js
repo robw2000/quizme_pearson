@@ -31,16 +31,6 @@ Template.createQuiz.events({
 		i++;
         return false;
 
-
-//        console.log('hit the submit button');
-//        e.preventDefault();
-//        // retrieve the input field values
-//        var player_name = t.find('#playername').value;
-//        if (player_name && player_name != '') {
-//            Session.set('player_name', player_name);
-//        }
-//        var quiz = Session.get('quiz');
-//        Router.go('takeQuiz', {_id: quiz._id} );
     }, //end add word
     'submit' : function(e ,t ){
             e.preventDefault();
