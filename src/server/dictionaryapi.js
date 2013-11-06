@@ -85,6 +85,9 @@ var getWordAndDefinition = function (quizWord) {
 //                    start_time : Session.get('start_time') ,
 //                    end_time : Session.get('end_time') }} }
 //            );
+        },
+        getDef :function(word){
+            return getWordAndDefinition(word);
         }
 
 
