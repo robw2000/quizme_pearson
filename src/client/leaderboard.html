@@ -8,7 +8,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 container-main" id="content">
-					<h1 class="page-header">Quiz Me <small>Quizicals' vocabulary quiz</small></h1>
+					<h1 class="page-header">Quiz Me <small>{{quiz_name}}</small></h1>
                     <div class="row">
                     <div class="col-md-6">
                     	<h2>All-time leaderboard:</h2>
@@ -22,36 +22,9 @@
 						            </tr>
 				          		</thead>
 				          		<tbody>
-				            		<tr class="success">
-                                    	<td><i class="icon-trophy"></i> Sam Spencer</td>
-                                        <td>100%</td>
-                                        <td>31 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Brian Bjork</td>
-                                        <td>100%</td>
-                                        <td>50 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Luke Skywalker</td>
-                                        <td>100%</td>
-                                        <td>60 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Obi wan Kenobi</td>
-                                        <td>90%</td>
-                                        <td>50 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Darth Maul</td>
-                                        <td>85%</td>
-                                        <td>31 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Mace Windu</td>
-                                        <td>70%</td>
-                                        <td>50 secs</td>
-                                    </tr>
+													{{#each games}}
+														{{> leaderboard_allgames}}
+                          {{/each}}
                                 </tbody>
                            </table>
                         </div>
@@ -68,21 +41,9 @@
 						            </tr>
 				          		</thead>
 				          		<tbody>
-				            		<tr class="success">
-                                    	<td><i class="icon-trophy"></i> Rob Wilburn</td>
-                                        <td>100%</td>
-                                        <td>31 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Shailesh Patil</td>
-                                        <td>100%</td>
-                                        <td>50 secs</td>
-                                    </tr>
-                                    <tr>
-                                    	<td>Luke Skywalker</td>
-                                        <td>100%</td>
-                                        <td>60 secs</td>
-                                    </tr>
+													{{#each recent}}
+														{{> leaderboard_recentgames}}
+                          {{/each}}
                                 </tbody>
                            </table>
                         </div>
@@ -90,7 +51,7 @@
                     </div>
 					<ul class="breadcrumb">
 						<li><a href="#">Quiz Me</a><span class="divider"></span></li>
-                        <li><a href="#">Quizicals' vocabulary quiz</a><span class="divider"></span></li>
+                        <li><a href="#">{{quiz_name}}</a><span class="divider"></span></li>
 						<li>Leaderboard</li>
 					</ul>
 				</div>
@@ -103,4 +64,20 @@
 		<script src="/js/jquery.js"></script>
         <script src="/js/bootstrap.js"></script>
         <script src="/js/pearsonstrap.js"></script>
+</template>
+
+<template name="leaderboard_allgames">
+<tr class="success">
+<td><i class="{{isAllWinnerClass isAllWinner}}"></i> {{player_name}}</td>
+<td>{{score}}</td>
+<td>{{display_time time}}</td>
+</tr>
+</template>
+
+<template name="leaderboard_recentgames">
+<tr class="success">
+<td><i class="{{isRecentWinnerClass isRecentWinner}}"></i> {{player_name}}</td>
+<td>{{score}}</td>
+<td>{{display_time time}}</td>
+</tr>
 </template>

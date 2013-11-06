@@ -13,7 +13,6 @@ Template.answer.events({
     var isGameOver = false;
     if (word != null) {
       var i = word.index;
-      console.log('finished index ' + i);
       if (i >= quiz.vocab.length - 1) {
         isGameOver = true;
         Session.set('word', null);

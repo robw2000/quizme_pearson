@@ -6,8 +6,6 @@
  * To change this template use File | Settings | File Templates.
  */
 
-
-console.log("I am running");
 var i = 2;
 $("#questions-button").on( "click", function( event ) {
     event.preventDefault();
