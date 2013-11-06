@@ -24,11 +24,13 @@
                         <div>
 					    	<fieldset>
 					    		<legend>Add questions</legend>
-					    		<div>
-					    			<label for="fieldset1">Word to define</label>
-					    			<input type="text" id="fieldset1" name="fieldset1">
-					    		</div>
-                                <div id="questions"></div>
+
+                                <div id="questions">
+                                    <div>
+                                        <label for="fieldset1">Word to define</label>
+                                        <input type="text" id="fieldset1" name="fieldset1">
+                                    </div>
+                                </div>
                                 <div>
                                 	<a class="btn btn-success" id="questions-button" href="#"><i class=" icon-plus-sign"></i> Question</a>
                                 </div>
@@ -47,21 +49,10 @@
 				<p class="sosumi">Copyright &copy; 2013 Pearson or its affiliate(s). All rights reserved.</p>
 			</footer>
 		</div>
-		<script src="js/jquery.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/pearsonstrap.js"></script>
-        <script>
-			var i = 2;
-			$("#questions-button").on( "click", function( event ) {
-				event.preventDefault();
-				$('<div id="word' + i + '"><label for="inputgrp' + i + '">Word to define</label><div class="input-group"><input type="text" id="inputgrp' + i + '" name="inputgrp' + i + '"><span class="input-group-btn"><button class="btn btn-danger" type="button" id="remove-button" onclick="removeWord(\'word' + i + '\')"><i class=" icon-minus-sign"></i></button></span></div></div>').appendTo("#questions");
-				i++;
-				return false;
-			});
-			function removeWord(word) { 
-				$("#" + word + "").remove();
-				i--;
-				return false;
-			}
-		</script>
+		<script src="/js/jquery.js"></script>
+        <script src="/js/bootstrap.js"></script>
+        <script src="/js/pearsonstrap.js"></script>
+      <script src="/js/createQuiz.js"></script>
+
+
 </template>
