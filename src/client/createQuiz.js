@@ -7,26 +7,26 @@
  */
 
 var i = 2;
-$("#questions-button").on( "click", function( event ) {
-    event.preventDefault();
-    $('<div id="word' + i + '"><label for="inputgrp' + i + '">Word to define</label><div class="input-group"><input type="text" id="inputgrp' + i + '" name="inputgrp' + i + '"><span class="input-group-btn"><button class="btn btn-danger" type="button" id="remove-button" onclick="removeWord(\'word' + i + '\')"><i class=" icon-minus-sign"></i></button></span></div></div>').appendTo("#questions");
-    i++;
-    return false;
-    });
-function removeWord(word) {
-    $("#" + word + "").remove();
-    i--;
-    return false;
-    }
+//$("#questions-button").on( "click", function( event ) {
+//    event.preventDefault();
+//    $('<div id="word' + i + '"><label for="inputgrp' + i + '">Word to define</label><div class="input-group"><input type="text" id="inputgrp' + i + '" name="inputgrp' + i + '"><span class="input-group-btn"><button class="btn btn-danger" type="button" id="remove-button" onclick="removeWord(\'word' + i + '\')"><i class=" icon-minus-sign"></i></button></span></div></div>').appendTo("#questions");
+//    i++;
+//    return false;
+//    });
+//function removeWord(word) {
+//    $("#" + word + i).remove();
+//    i--;
+//    return false;
+//    }
 
 
 
 Template.createQuiz.events({
     'click #questions-button' : function(e, t){
         e.preventDefault();
-        $('<div id="word' + i + '"><label for="inputgrp' + i + '">Word to define</label><div class="input-group"><input type="text" id="inputgrp' + i + '" name="inputgrp' + i + '"><span class="input-group-btn"><button class="btn btn-danger" type="button" id="remove-button'+i+'"><i class=" icon-minus-sign"></i></button></span></div></div>').appendTo("#questions");
-		$('#remove-button'+i).on('click',function(){
-			$("#" + word + "").remove();
+        $('<div id="word' + i + '" class="addedRow"><label for="inputgrp' + i + '">Word to define</label><div class="input-group"><input type="text" id="inputgrp' + i + '" name="inputgrp' + i + '"><span class="input-group-btn"><button class="btn btn-danger" type="button" id="remove-button'+i+'"><i class=" icon-minus-sign"></i></button></span></div></div>').appendTo("#questions");
+		$('#remove-button'+i).on('click',function(e){
+            $(e.target).closest('.addedRow').remove();
 		});
 		i++;
         return false;
