@@ -6,7 +6,7 @@ var getDefinition = function (word) {
         return response.data[0].text;
 
     } else {
-        return null;
+        return word;
 
     }
 
@@ -20,8 +20,12 @@ var getDefinition = function (word) {
 var getSynonyms = function (word) {
     var response =
         Meteor.http.call('GET', 'http://api.wordnik.com/v4/word.json/' + word + '/relatedWords?useCanonical=true&relationshipTypes=synonym&limitPerRelationshipType=10&api_key=02d6121eae6326d65940a0b410d0ef121d89f66f01e3a699f');
+     if (response && response.data && response.data.length && response.data.length > 0 && response.data[0].words) {
+         return response.data[0].words;
 
-    return response.data[0].words;
+     } else {
+         return [word];
+     }
 }
 
 /**

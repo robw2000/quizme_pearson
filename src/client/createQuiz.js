@@ -38,21 +38,24 @@ Template.createQuiz.events({
         $('#questions input').each(function(index,data){
             words.push($(data).val());
         });
-        console.log(words);
+        //console.log(words);
         var name = $('#txt1').val();
+        console.log(words);
         Meteor.call('createQuiz' ,name , words) ;
 
-        $('#questions > :not(div:first-child)').remove();
-        $('#questions > div:first-child input,#txt1,#txta').val('');
+        //$('#questions > :not(div:first-child)').remove();
+        //$('#questions > div:first-child input,#txt1,#txta').val('');
 
-        $('form').before($('<div/>',{'class':'alert alert-success', 'id':'submitSuccess'}).text('Quiz Created Successfully ! You may create another if you like.'));
+        //$('form').before($('<div/>',{'class':'alert alert-success', 'id':'submitSuccess'}).text('Quiz Created Successfully ! You may create another if you like.'));
 
-        $('input').on('focus',function(){
-            $('#submitSuccess').remove();
-            $('input').off();
-        });
+        //$('input').on('focus',function(){
+        //    $('#submitSuccess').remove();
+        //    $('input').off();
+        //});
 
-        window.scrollTo(0, 0);
+        //window.scrollTo(0, 0);
+
+        window.location = '/quizzes';
 
     }// end submit
 });
