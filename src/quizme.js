@@ -118,7 +118,10 @@ Router.map(function () {
   this.route('leaderboard', {
     path: '/quizzes/:_id/leaderboard',
     data: function() {
-      var quiz = Quizzes.findOne({_id: this.params._id}) || {games: []};
+      if (Session.get('quiz') == null) {
+        Session.set('quiz', Quizzes.findOne({_id: this.params._id}) || {games: []});
+      }
+      var quiz = Session.get('quiz');
       var games = quiz.games || [];
       var recent = [];
       games.sort(function(a, b){
@@ -174,31 +177,36 @@ if (Meteor.isServer) {
             player_name: 'Rob',
             start_time: moment().subtract('minutes', 11).format(),
             end_time: moment().subtract('seconds', 205).format(),
-            score: 70
+            score: 70,
+            timeTaken: 123
           },
           {
             player_name: 'Brian',
             start_time: moment().subtract('minutes', 1).format(),
             end_time: moment().subtract('seconds', 5).format(),
-            score: 100
+            score: 100,
+            timeTaken: 23
           },
           {
             player_name: 'Sam',
             start_time: moment().subtract('minutes', 4).format(),
             end_time: moment().subtract('seconds', 45).format(),
-            score: 80
+            score: 80,
+            timeTaken: 58
           },
           {
             player_name: 'Rob',
             start_time: moment().subtract('minutes', 21).format(),
             end_time: moment().subtract('seconds', 350).format(),
-            score: 10
+            score: 10,
+            timeTaken: 986
           },
           {
             player_name: 'Shailesh',
             start_time: moment().subtract('minutes', 1).format(),
             end_time: moment().subtract('seconds', 25).format(),
-            score: 98
+            score: 98,
+            timeTaken: 25
           }
         ],
         vocab: [
@@ -231,31 +239,36 @@ if (Meteor.isServer) {
             player_name: 'Rob',
             start_time: moment().subtract('minutes', 11).format(),
             end_time: moment().subtract('seconds', 205).format(),
-            score: 70
+            score: 70,
+            timeTaken: 123
           },
           {
             player_name: 'Brian',
             start_time: moment().subtract('minutes', 1).format(),
             end_time: moment().subtract('seconds', 5).format(),
-            score: 100
+            score: 100,
+            timeTaken: 654
           },
           {
             player_name: 'Sam',
             start_time: moment().subtract('minutes', 4).format(),
             end_time: moment().subtract('seconds', 45).format(),
-            score: 80
+            score: 80,
+            timeTaken: 24
           },
           {
             player_name: 'Rob',
             start_time: moment().subtract('minutes', 21).format(),
             end_time: moment().subtract('seconds', 350).format(),
-            score: 10
+            score: 10,
+            timeTaken: 12
           },
           {
             player_name: 'Shailesh',
             start_time: moment().subtract('minutes', 1).format(),
             end_time: moment().subtract('seconds', 25).format(),
-            score: 98
+            score: 98,
+            timeTaken: 68
           }
         ],
         vocab: [

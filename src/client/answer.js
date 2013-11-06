@@ -29,7 +29,7 @@ Template.answer.events({
 
         var timeSec = "";
         if (Session.get('end_time') && Session.get('start_time')){
-            timeSec =  moment(Session.get('end_time')).valueOf() - moment(Session.get('start_time')).valueOf() ;
+            timeSec =  Math.round((moment(Session.get('end_time')).valueOf() - moment(Session.get('start_time')).valueOf())/1000);
         }
         var score = 0;
         if (total && countCorrect ) {
